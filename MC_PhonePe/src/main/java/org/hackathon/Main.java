@@ -128,7 +128,7 @@ class ProblemSolvingSystem {
     public void addUser(User user) {
         lock.writeLock().lock();
         try {
-            if(users.stream().anyMatch(u -> u.getName().equals(user.getName()))) {
+            if (users.stream().anyMatch(u -> u.getName().equals(user.getName()))) {
                 throw new IllegalArgumentException("User already exists");
             }
             users.add(user);
@@ -141,7 +141,7 @@ class ProblemSolvingSystem {
     public void addProblem(Problem problem) {
         lock.writeLock().lock();
         try {
-            if(problems.stream().anyMatch(p -> p.getName().equals(problem.getName()))) {
+            if (problems.stream().anyMatch(p -> p.getName().equals(problem.getName()))) {
                 throw new IllegalArgumentException("Problem already exists");
             }
             problems.add(problem);
@@ -170,7 +170,8 @@ class ProblemSolvingSystem {
                     Set<User> solvers = problem.getSolvers();
                     int numberOfSolvers = solvers.size();
                     System.out.println(
-                        "Problem: " + problem.getName() + " Difficulty: " + problem.getDifficultyLevel()
+                        "Problem: " + problem.getName() + " Difficulty: "
+                            + problem.getDifficultyLevel()
                             + " Score: " + problem.getScore());
                     // Display the average time taken to solve the problem
                     double averageTimeTaken = problem.getAverageTime();
@@ -204,7 +205,6 @@ class ProblemSolvingSystem {
         } finally {
             lock.writeLock().unlock();
         }
-
 
         // Return next 5 recommended problems for the user
     }
@@ -241,18 +241,19 @@ class ProblemSolvingSystem {
 
                 // Sort users by their total score in reverse order
                 users.sort((o1, o2) -> {
-                       int totalScore1 = calculateTotalScore(o1.getSolvedProblems());
-                       int totalScore2 = calculateTotalScore(o2.getSolvedProblems());
-                       return Integer.compare(totalScore2, totalScore1);
+                    int totalScore1 = calculateTotalScore(o1.getSolvedProblems());
+                    int totalScore2 = calculateTotalScore(o2.getSolvedProblems());
+                    return Integer.compare(totalScore2, totalScore1);
                 });
 
-                    // Display the top 'n' contestants with maximum score and the problems they solved
+                // Display the top 'n' contestants with maximum score and the problems they solved
                 for (int i = 0; i < Math.min(topN, users.size()); i++) {
                     User user = users.get(i);
                     int totalScore = calculateTotalScore(user.getSolvedProblems());
 
                     System.out.println(
-                        "Rank " + (i + 1) + ": " + user.getName() + " - Total Score: " + totalScore);
+                        "Rank " + (i + 1) + ": " + user.getName() + " - Total Score: "
+                            + totalScore);
 
                     // Display the problems solved by the user
                     System.out.println("Solved Problems:");
@@ -271,7 +272,8 @@ class ProblemSolvingSystem {
                 // Calculate the total score for each department
                 for (User user : users) {
                     departmentScores.put(user.getDepartment(),
-                        departmentScores.getOrDefault(user.getDepartment(), 0) + calculateTotalScore(
+                        departmentScores.getOrDefault(user.getDepartment(), 0)
+                            + calculateTotalScore(
                             user.getSolvedProblems()));
                 }
 
@@ -320,6 +322,15 @@ class ProblemSolvingSystem {
 
         return recommendedProblems;
     }
+
+    // Additional method to clean up or reset the singleton
+    public static void resetInstance() {
+        uniqueInstance = null;
+    }
+
+    public void clearUsers() {
+        this.users.clear();
+    }
 }
 
 public class Main {
@@ -347,7 +358,6 @@ public class Main {
         } catch (IllegalArgumentException e) {
             System.out.println("Failed adding user: " + e.getMessage());
         }
-
 
         problemSolvingSystem.addProblem(problem1);
         problemSolvingSystem.addProblem(problem2);

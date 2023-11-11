@@ -1,10 +1,19 @@
 package org.hackathon;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProblemSolvingSystemTest {
+
+    @AfterEach
+    public void cleanupEach() {
+        ProblemSolvingSystem.getInstance().clearUsers();
+        ProblemSolvingSystem.resetInstance();
+    }
+
     @Test
     void testSolveAndFetchSolvedProblems() {
         ProblemSolvingSystem problemSolvingSystem = ProblemSolvingSystem.getInstance();
@@ -31,7 +40,8 @@ public class ProblemSolvingSystemTest {
         problemSolvingSystem.addProblem(solvedProblem);
 
         // Assuming a user solved a problem and now wants recommendations
-        List<Problem> recommendedProblems = problemSolvingSystem.getRecommendedProblems(user, solvedProblem, 5);
+        List<Problem> recommendedProblems = problemSolvingSystem.getRecommendedProblems(user,
+            solvedProblem, 5);
 
         // Ensure recommended problems have the same tag as the solved problem
         for (Problem problem : recommendedProblems) {
