@@ -2,8 +2,12 @@ package org.hackathon;
 
 
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 class User {
+
     private final String name;
     private final String department;
     private final Set<Problem> solvedProblems;
@@ -34,6 +38,7 @@ class User {
 }
 
 class Problem {
+
     private final String name;
     private final String tag;
     private final String difficultyLevel;
@@ -94,8 +99,12 @@ class Problem {
 }
 
 class ProblemSolvingSystem {
+
     private final List<User> users;
     private final List<Problem> problems;
+
+    private final ReadWriteLock lock = new ReentrantReadWriteLock();
+
 
     private volatile static ProblemSolvingSystem uniqueInstance = null;
 
@@ -109,6 +118,7 @@ class ProblemSolvingSystem {
         }
         return uniqueInstance;
     }
+
     private ProblemSolvingSystem() {
         this.users = new ArrayList<>();
         this.problems = new ArrayList<>();
@@ -116,117 +126,170 @@ class ProblemSolvingSystem {
 
     // Function to register a user
     public void addUser(User user) {
-        users.add(user);
+        lock.writeLock().lock();
+        try {
+            if(users.stream().anyMatch(u -> u.getName().equals(user.getName()))) {
+                throw new IllegalArgumentException("User already exists");
+            }
+            users.add(user);
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 
     // Function to add a problem to the library
     public void addProblem(Problem problem) {
-        problems.add(problem);
+        lock.writeLock().lock();
+        try {
+            if(problems.stream().anyMatch(p -> p.getName().equals(problem.getName()))) {
+                throw new IllegalArgumentException("Problem already exists");
+            }
+            problems.add(problem);
+        } finally {
+            lock.writeLock().unlock();
+        }
     }
 
     // Function to fetch the list of problems based on filtering and sorting criteria
     public List<Problem> fetchProblems(String difficultyLevel, String tag, boolean sortByScore) {
-        List<Problem> filteredProblems = new ArrayList<>();
+        lock.readLock().lock();
+        try {
+            List<Problem> filteredProblems = new ArrayList<>();
 
-        // Iterate through all problems to filter based on criteria
-        for (Problem problem : problems) {
-            boolean difficultyMatch = difficultyLevel == null || problem.getDifficultyLevel().equals(difficultyLevel);
-            boolean tagMatch = tag == null || problem.getTag().equals(tag);
+            // Iterate through all problems to filter based on criteria
+            for (Problem problem : problems) {
+                boolean difficultyMatch =
+                    difficultyLevel == null || problem.getDifficultyLevel().equals(difficultyLevel);
+                boolean tagMatch = tag == null || problem.getTag().equals(tag);
 
-            if (difficultyMatch && tagMatch) {
-                // Include the problem if it matches the specified criteria
-                filteredProblems.add(problem);
+                if (difficultyMatch && tagMatch) {
+                    // Include the problem if it matches the specified criteria
+                    filteredProblems.add(problem);
 
-                // Display the number of users who have solved the problem
-                Set<User> solvers = problem.getSolvers();
-                int numberOfSolvers = solvers.size();
-                System.out.println("Problem: " + problem.getName() + " Difficulty: " + problem.getDifficultyLevel() + " Score: " + problem.getScore());
-                // Display the average time taken to solve the problem
-                double averageTimeTaken = problem.getAverageTime();
-                System.out.println(" Solvers: " + numberOfSolvers + " Average Time Taken: " + averageTimeTaken + "(seconds)");
-                System.out.println();
+                    // Display the number of users who have solved the problem
+                    Set<User> solvers = problem.getSolvers();
+                    int numberOfSolvers = solvers.size();
+                    System.out.println(
+                        "Problem: " + problem.getName() + " Difficulty: " + problem.getDifficultyLevel()
+                            + " Score: " + problem.getScore());
+                    // Display the average time taken to solve the problem
+                    double averageTimeTaken = problem.getAverageTime();
+                    System.out.println(
+                        " Solvers: " + numberOfSolvers + " Average Time Taken: " + averageTimeTaken
+                            + "(seconds)");
+                    System.out.println();
+                }
             }
+
+            if (sortByScore) {
+                // Sort the list in descending order of score
+                filteredProblems.sort(Comparator.comparingInt(Problem::getScore).reversed());
+            }
+
+            return filteredProblems;
+        } finally {
+            lock.readLock().unlock();
         }
 
-        if (sortByScore) {
-            // Sort the list in descending order of score
-            filteredProblems.sort(Comparator.comparingInt(Problem::getScore).reversed());
-        }
-
-        return filteredProblems;
     }
 
     // Function to mark a problem as solved by a user
     public void solve(User user, Problem problem, long timeTaken) {
-        // Add the user to the list of solvers for the problem
-        user.addInMySolvedSet(problem);
-        problem.recordTime(user, timeTaken);
-        problem.addSolver(user);
+        lock.writeLock().lock();
+        try {
+            // Add the user to the list of solvers for the problem
+            user.addInMySolvedSet(problem);
+            problem.recordTime(user, timeTaken);
+            problem.addSolver(user);
+        } finally {
+            lock.writeLock().unlock();
+        }
+
 
         // Return next 5 recommended problems for the user
     }
 
     // Function to fetch the list of solved problems for a user
     public List<Problem> fetchSolvedProblems(User user) {
-        // Implement logic to retrieve the list of problems solved by the user
+        lock.readLock().lock();
+        try {
+            // Implement logic to retrieve the list of problems solved by the user
 
-        List<Problem> solvedProblems = new ArrayList<>();
+            List<Problem> solvedProblems = new ArrayList<>();
 
-        for (Problem problem : problems) {
-            Set<User> solvers = problem.getSolvers();
-            if (solvers.contains(user)) {
-                solvedProblems.add(problem);
+            for (Problem problem : problems) {
+                Set<User> solvers = problem.getSolvers();
+                if (solvers.contains(user)) {
+                    solvedProblems.add(problem);
+                }
             }
+
+            // Return the list of solved problems
+            return solvedProblems;
+        } finally {
+            lock.readLock().unlock();
         }
 
-        // Return the list of solved problems
-        return solvedProblems;
     }
 
     // Function to display the leaderboard
     public void displayLeaderboard(boolean byUser, int topN) {
-        if (byUser) {
-            System.out.println("Leaderboard by User:");
+        lock.readLock().lock();
+        try {
+            if (byUser) {
+                System.out.println("Leaderboard by User:");
 
-            // Sort users by their total score
-            users.sort(Comparator.comparingInt(user -> calculateTotalScore(user.getSolvedProblems())));
+                // Sort users by their total score in reverse order
+                users.sort((o1, o2) -> {
+                       int totalScore1 = calculateTotalScore(o1.getSolvedProblems());
+                       int totalScore2 = calculateTotalScore(o2.getSolvedProblems());
+                       return Integer.compare(totalScore2, totalScore1);
+                });
 
-            // Display the top 'n' contestants with maximum score and the problems they solved
-            for (int i = 0; i < Math.min(topN, users.size()); i++) {
-                User user = users.get(i);
-                int totalScore = calculateTotalScore(user.getSolvedProblems());
+                    // Display the top 'n' contestants with maximum score and the problems they solved
+                for (int i = 0; i < Math.min(topN, users.size()); i++) {
+                    User user = users.get(i);
+                    int totalScore = calculateTotalScore(user.getSolvedProblems());
 
-                System.out.println("Rank " + (i + 1) + ": " + user.getName() + " - Total Score: " + totalScore);
+                    System.out.println(
+                        "Rank " + (i + 1) + ": " + user.getName() + " - Total Score: " + totalScore);
 
-                // Display the problems solved by the user
-                System.out.println("Solved Problems:");
-                for (Problem problem : user.getSolvedProblems()) {
-                    System.out.println("- " + problem.getName());
+                    // Display the problems solved by the user
+                    System.out.println("Solved Problems:");
+                    for (Problem problem : user.getSolvedProblems()) {
+                        System.out.println("- " + problem.getName());
+                    }
+
+                    System.out.println();
+                }
+            } else {
+                System.out.println("Leaderboard by Department:");
+
+                // Map to store the total score for each department
+                Map<String, Integer> departmentScores = new HashMap<>();
+
+                // Calculate the total score for each department
+                for (User user : users) {
+                    departmentScores.put(user.getDepartment(),
+                        departmentScores.getOrDefault(user.getDepartment(), 0) + calculateTotalScore(
+                            user.getSolvedProblems()));
                 }
 
-                System.out.println();
+                // Sort departments by total score
+                List<Map.Entry<String, Integer>> sortedDepartments = new ArrayList<>(
+                    departmentScores.entrySet());
+                sortedDepartments.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+                // Display the top 'n' departments with the best scores
+                for (int i = 0; i < Math.min(topN, sortedDepartments.size()); i++) {
+                    Map.Entry<String, Integer> entry = sortedDepartments.get(i);
+                    System.out.println(
+                        "Rank " + (i + 1) + ": Department " + entry.getKey() + " - Total Score: "
+                            + entry.getValue());
+                }
             }
-        } else {
-            System.out.println("Leaderboard by Department:");
-
-            // Map to store the total score for each department
-            Map<String, Integer> departmentScores = new HashMap<>();
-
-            // Calculate the total score for each department
-            for (User user : users) {
-                departmentScores.put(user.getDepartment(),
-                    departmentScores.getOrDefault(user.getDepartment(), 0) + calculateTotalScore(user.getSolvedProblems()));
-            }
-
-            // Sort departments by total score
-            List<Map.Entry<String, Integer>> sortedDepartments = new ArrayList<>(departmentScores.entrySet());
-            sortedDepartments.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
-
-            // Display the top 'n' departments with the best scores
-            for (int i = 0; i < Math.min(topN, sortedDepartments.size()); i++) {
-                Map.Entry<String, Integer> entry = sortedDepartments.get(i);
-                System.out.println("Rank " + (i + 1) + ": Department " + entry.getKey() + " - Total Score: " + entry.getValue());
-            }
+        } finally {
+            lock.readLock().unlock();
         }
     }
 
@@ -235,11 +298,11 @@ class ProblemSolvingSystem {
         return solvedProblems.stream().mapToInt(Problem::getScore).sum();
     }
 
-    public List<Problem> getRecommendedProblems(User user, Problem solvedProblem, int numberOfRecommendations) {
+    public List<Problem> getRecommendedProblems(User user, Problem solvedProblem,
+        int numberOfRecommendations) {
         List<Problem> recommendedProblems = new ArrayList<>();
 
         String solvedProblemTag = solvedProblem.getTag();
-
 
         // TODO: Implement logic to retrieve recommended problems
 
@@ -252,13 +315,15 @@ class ProblemSolvingSystem {
             }
         }
 
-        System.out.println("Recommended Problems for " + user.getName() + ":" + recommendedProblems);
+        System.out.println(
+            "Recommended Problems for " + user.getName() + ":" + recommendedProblems);
 
         return recommendedProblems;
     }
 }
 
 public class Main {
+
     public static void main(String[] args) {
         // Instantiate the backend
         ProblemSolvingSystem problemSolvingSystem = ProblemSolvingSystem.getInstance();
@@ -267,15 +332,22 @@ public class Main {
         User user1 = new User("Swapnil", "IT");
         User user2 = new User("John", "Finance");
         User user3 = new User("Alice", "HR");
+        User user4 = new User("Alice", "HR");
 
         Problem problem1 = new Problem("InsertIntoDoublyLinkedList", "Tag1", "Easy", 10);
         Problem problem2 = new Problem("MergeSort", "Tag2", "Medium", 20);
         Problem problem3 = new Problem("LRUCache", "Tag1", "Hard", 30);
 
         // Register users and add problems to the library
-        problemSolvingSystem.addUser(user1);
-        problemSolvingSystem.addUser(user2);
-        problemSolvingSystem.addUser(user3);
+        try {
+            problemSolvingSystem.addUser(user1);
+            problemSolvingSystem.addUser(user2);
+            problemSolvingSystem.addUser(user3);
+            problemSolvingSystem.addUser(user4);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Failed adding user: " + e.getMessage());
+        }
+
 
         problemSolvingSystem.addProblem(problem1);
         problemSolvingSystem.addProblem(problem2);
