@@ -336,6 +336,8 @@ class ProblemSolvingSystem {
 public class Main {
 
     public static void main(String[] args) {
+        // get the timestamp
+        long startTime = System.currentTimeMillis();
         // Instantiate the backend
         ProblemSolvingSystem problemSolvingSystem = ProblemSolvingSystem.getInstance();
 
@@ -388,5 +390,11 @@ public class Main {
         problemSolvingSystem.displayLeaderboard(true, Integer.MAX_VALUE);
         System.out.println();
         problemSolvingSystem.displayLeaderboard(false, Integer.MAX_VALUE);
+
+        // get the timestamp
+        long endTime = System.currentTimeMillis();
+        // calculate elapsed time
+        long elapsedTime = endTime - startTime;
+        System.out.println("Total elapsed time: " + elapsedTime + " milliseconds");
     }
 }
