@@ -1,9 +1,15 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:129.0) Gecko/20100101 Firefox/129.0" version="24.7.6">
   <diagram name="Page-1" id="S3YdIJxQIY1coQNKaCjd">
-    <mxGraphModel>
+    <mxGraphModel dx="704" dy="795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="nlpMjUv3pqUPEMqOAvs9-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;HealthCheckSystem&lt;/h1&gt;&lt;div&gt;Design a system to periodically run a suite of diagnostics to gather health data from these servers&lt;br&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="30" width="410" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="nlpMjUv3pqUPEMqOAvs9-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Requirements/clarifications&lt;br&gt;&lt;/h1&gt;&lt;p&gt;How many services are there?&lt;/p&gt;&lt;p&gt;What do we mean by diagnostics?&lt;/p&gt;&lt;p&gt;When do we call ok?&lt;/p&gt;&lt;p&gt;/GET health - Each server?&lt;/p&gt;&lt;p&gt;Periodically means? How often we want to run these?&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;CP ? or AP? - based on CAP - AP&lt;br&gt;&lt;br&gt;what kind of data that we want to gather from these servers&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="150" width="540" height="450" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
