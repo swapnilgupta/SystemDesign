@@ -1,0 +1,137 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36" version="24.7.6">
+  <diagram name="Page-1" id="2QWok5RA2Jsqw2en2679">
+    <mxGraphModel dx="2660" dy="991" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Rule Propagtion Service Design&lt;/h1&gt;&lt;p style=&quot;margin: 0cm; line-height: 21.6px; font-size: 12pt; font-family: Aptos, sans-serif;&quot; class=&quot;MsoNormal&quot;&gt;&lt;span style=&quot;font-size: 10.5pt; line-height: 18.9px; font-family: Helvetica; color: rgb(14, 14, 14);&quot; lang=&quot;EN-GB&quot;&gt;1. configuration distributions – reports systems host scale&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: medium;&quot; class=&quot;linkify&quot;&gt;&lt;span style=&quot;font-size: 10.5pt; line-height: 16.1px;&quot;&gt;SYSTEM DESIGN We have CF, there is a deterministic process called configuration distribution. At P100 we need to know that every host across the world has the changes and report back to the customer in less than 30 seconds. How would you build a system like that.&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-size: medium;&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="200" y="20" width="410" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-2" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Requirement&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Rules are only text based? yes&lt;/li&gt;&lt;li&gt;60K Servers would be there - 200Locations&amp;nbsp;&lt;/li&gt;&lt;li&gt;Rule update AVg what is the frequency of it? 30 configs / secs&amp;nbsp;&lt;/li&gt;&lt;li&gt;where are the rules - RMS&amp;nbsp;&lt;/li&gt;&lt;li&gt;Ack - for save (yes) - it new rules has been succesfully applied to all servers&lt;/li&gt;&lt;li&gt;are these servers read on - demand rules&amp;nbsp;&lt;/li&gt;&lt;li&gt;How many reading what no users can be there ? - No focus&lt;/li&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="100" y="260" width="690" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-3" value="Rule Management Service (WS)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="320" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="F1d3OdFx98DP0Di4s6Ql-5" target="F1d3OdFx98DP0Di4s6Ql-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-5" value="LB" style="rounded=0;whiteSpace=wrap;html=1;verticalLabelPosition=bottom;verticalAlign=top;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.azure_load_balancer;" parent="1" vertex="1">
+          <mxGeometry x="-250" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="F1d3OdFx98DP0Di4s6Ql-7" target="F1d3OdFx98DP0Di4s6Ql-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-7" value="Client" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="-400" y="820" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="F1d3OdFx98DP0Di4s6Ql-9" target="F1d3OdFx98DP0Di4s6Ql-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-9" value="RateLimit" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-250" y="685" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="F1d3OdFx98DP0Di4s6Ql-11" target="F1d3OdFx98DP0Di4s6Ql-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-11" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="630" y="700" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-12" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="640" y="710" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-13" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="650" y="725" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="F1d3OdFx98DP0Di4s6Ql-14" target="jX-gIIulzCaMPwgweBgl-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-14" value="&lt;b&gt;Hosts&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="670" y="738" width="120" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-24" value="Rule Management Service (WS)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="330" y="840" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-25" value="Rule Management Service (WS)" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="340" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-26" value="&lt;p&gt;&lt;strong&gt;Central Configuration Management System (CCMS)&lt;/strong&gt;&lt;/p&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="350" y="860" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-31" value="Rules by User A" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="100" y="835" width="125" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="F1d3OdFx98DP0Di4s6Ql-32" target="jX-gIIulzCaMPwgweBgl-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-32" value="ACK Polling Server" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="365" y="1080" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="F1d3OdFx98DP0Di4s6Ql-33" target="F1d3OdFx98DP0Di4s6Ql-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="F1d3OdFx98DP0Di4s6Ql-33" target="F1d3OdFx98DP0Di4s6Ql-32">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-50" y="990" as="targetPoint" />
+            <mxPoint x="-20" y="910" as="sourcePoint" />
+            <Array as="points">
+              <mxPoint x="-20" y="1110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F1d3OdFx98DP0Di4s6Ql-33" value="API Gateway" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-90" y="790" width="140" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-3" value="ACK Polling Server" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="375" y="1090" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-4" value="&lt;b&gt;ACK Polling Server&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="385" y="1100" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="jX-gIIulzCaMPwgweBgl-7" target="jX-gIIulzCaMPwgweBgl-12">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="430" y="1072" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-7" value="" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Cache_Redis_Product.svg;" vertex="1" parent="1">
+          <mxGeometry x="400" y="982" width="50" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-12" value="SQL" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="325" y="1012" width="35" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-13" value="Archived Updates" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="282.5" y="1060" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-14" value="Real Time Updates" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="425" y="960" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-17" value="GET /v1/config/{serverId}" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="420" y="720" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.3;entryY=0.048;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="F1d3OdFx98DP0Di4s6Ql-26" target="jX-gIIulzCaMPwgweBgl-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-21" value="rules" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="jX-gIIulzCaMPwgweBgl-20">
+          <mxGeometry x="-0.1821" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-23" value="/POST /v1/ack/{serverID}" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="530" y="1105" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-24" value="" style="verticalLabelPosition=bottom;html=1;verticalAlign=top;align=center;strokeColor=none;fillColor=#00BEF2;shape=mxgraph.azure.load_balancer_generic;pointerEvents=1;" vertex="1" parent="1">
+          <mxGeometry x="-250" y="835" width="37.5" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.187;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="jX-gIIulzCaMPwgweBgl-24" target="jX-gIIulzCaMPwgweBgl-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-27" value="&lt;div&gt;HSET server:123 status &quot;applied&quot; version &quot;v2&quot; ack &quot;true&quot;&lt;/div&gt;&lt;div&gt;&lt;div&gt;SADD acknowledged_servers server1 server2 server3&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;ZADD ack_times 1623855600 server1 1623855610 server2&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;LPUSH pending_updates server4 server5 server6&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;div&gt;INCR user:123:requests&lt;/div&gt;&lt;div&gt;EXPIRE user:123:requests 60&amp;nbsp; // Set expiry to 60 seconds&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;div&gt;{&lt;/div&gt;&lt;div&gt;&amp;nbsp; &quot;status&quot;: &quot;success&quot;,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &quot;update_id&quot;: &quot;123&quot;,&lt;/div&gt;&lt;div&gt;&amp;nbsp; &quot;acknowledged_servers&quot;: [&quot;server1&quot;, &quot;server2&quot;, &quot;server3&quot;],&lt;/div&gt;&lt;div&gt;&amp;nbsp; &quot;failed_servers&quot;: []&lt;/div&gt;&lt;div&gt;}&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-400" y="1240" width="440" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="jX-gIIulzCaMPwgweBgl-28" value="/GET /v1/{serverID}" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1080" width="130" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
