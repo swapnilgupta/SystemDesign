@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Directory implements FileSystem {
 	private final String name;
-	List<FileSystem> fileSystemList;
+	private final List<FileSystem> fileSystemList;
 
 	public Directory(String name) {
 		this.name = name;
-		fileSystemList = new ArrayList<>();
+		this.fileSystemList = new ArrayList<>();
 	}
 
 	public void add(FileSystem fileSystemObj) {
@@ -18,17 +18,6 @@ public class Directory implements FileSystem {
 
 	public void remove(FileSystem fileSystemObj) {
 		fileSystemList.remove(fileSystemObj);
-	}
-
-	public void createFile(String fileName) {
-		System.out.println("Creating file: " + fileName);
-		FileSystem file = new File(fileName);
-		fileSystemList.add(file);
-	}
-
-	@Override
-	public String getName() {
-		return name;
 	}
 
 	@Override
@@ -40,23 +29,11 @@ public class Directory implements FileSystem {
 	}
 
 	@Override
-	public List<FileSystem> search(String fileName) {
-		List<FileSystem> result = new ArrayList<>();
-		for (FileSystem obj : fileSystemList) {
-			result.addAll(obj.search(fileName));
-		}
-		return result;
-	}
-
-	public List<File> filterFiles(FileFilter fileFilter) {
+	public List<File> search(Filter filter) {
 		List<File> result = new ArrayList<>();
 		for (FileSystem obj : fileSystemList) {
-			if (obj instanceof File && fileFilter.apply(obj)) {
-				result.add((File) obj);
-			}
+			result.addAll(obj.search(filter));
 		}
 		return result;
 	}
-
-
 }

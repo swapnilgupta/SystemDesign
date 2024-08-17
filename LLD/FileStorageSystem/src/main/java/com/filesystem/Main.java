@@ -1,42 +1,41 @@
 package com.filesystem;
 
+import java.util.List;
+
 public class Main {
 	public static void main(String[] args) {
-		Directory movies = new Directory("Movies");
+		Directory root = new Directory("root");
+		File file1 = new File("document.txt", 1000);
+		File file2 = new File("image.png", 5000);
+		File file3 = new File("video.mp4", 15000);
 
-		File border = new File("Border");
-		FileSystem sholay = new File("Sholay");
-		FileSystem bahubali = new File("Bahubali");
-		movies.add(border);
-		movies.add(sholay);
-		movies.add(bahubali);
+		root.add(file1);
+		root.add(file2);
+		root.add(file3);
 
-		Directory comedy = new Directory("Comedy");
-		FileSystem heraPheri = new File("Hera Pheri");
-		FileSystem golmaal = new File("Golmaal");
-		comedy.add(heraPheri);
-		comedy.add(golmaal);
+		Directory subDir = new Directory("subdir");
+		File file4 = new File("notes.txt", 2000);
+		subDir.add(file4);
+		root.add(subDir);
 
-		movies.add(comedy);
+		System.out.println("********************Root Directory********************");
+		root.ls();
 
-		movies.ls();
-
-		// Create a new file
-		movies.createFile("NewMovie");
-		movies.ls();
-
-		// Add content to a file
-		border.addContent("This is the content of Border.");
-
-		// Search for a file
-		System.out.println("Searching for 'Sholay':");
-		for (FileSystem file : movies.search("Sholay")) {
+		// Search by name
+		Filter nameFilter = new NameFilter("txt");
+		List<File> nameFilteredFiles = root.search(nameFilter);
+		System.out.println("********************Name Filtered Files********************");
+		System.out.println("Files with 'txt' in name:");
+		for (File file : nameFilteredFiles) {
 			file.ls();
 		}
 
-		// Filter files
-		System.out.println("Filtering files with name containing 'a':");
-		for (File file : movies.filterFiles(f -> f.getName().contains("a"))) {
+		// Search by size
+		Filter sizeFilter = new SizeFilter(1000, 6000);
+		List<File> sizeFilteredFiles = root.search(sizeFilter);
+		System.out.println("********************Size Filtered Files********************");
+		System.out.println("Files between 1000 and 6000 bytes:");
+		for (File file : sizeFilteredFiles) {
 			file.ls();
 		}
 	}

@@ -10,7 +10,7 @@ Design a file system that supports the following functionalities:
 4. **Create a Directory**: Allow users to create a new directory.
 5. **Search for Files**: Implement a search functionality to locate files by their name.
 6. **Filter Files**: Provide the ability to filter files based on specific criteria (e.g., file name contains a certain substring).
-
+   Design a solution in OOD, extensible solution to implement search filter when given a path to directory and find all files with matching filters like by size or name
 ## Design Requirements
 
 - **Object-Oriented Principles**: Ensure that the design adheres to OOP principles like the Single Responsibility Principle (SRP), Open/Closed Principle (OCP), and Dependency Inversion Principle (DIP).
