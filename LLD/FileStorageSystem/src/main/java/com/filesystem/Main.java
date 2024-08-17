@@ -38,5 +38,14 @@ public class Main {
 		for (File file : sizeFilteredFiles) {
 			file.ls();
 		}
+
+		// Search by extension
+		System.out.println("********************Extension Filtered Files********************");
+		Filter extensionFilter = new ExtensionFilter("png");
+		List<File> extensionFilteredFiles = root.search(extensionFilter);
+		System.out.println("Files with 'png' extension:");
+		for (File file : extensionFilteredFiles) {
+			file.ls();
+		}
 	}
 }
