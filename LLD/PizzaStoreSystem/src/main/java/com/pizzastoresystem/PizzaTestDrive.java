@@ -27,7 +27,7 @@ public class PizzaTestDrive {
 		System.out.println("Ethan ordered a " + nyOrder.getPizzaList().getFirst().getName() + " from New York Pizza Store");
 
 		// Processing payment for the order
-		Payment nyPayment = new CreditCardTransaction();
+		Payment nyPayment = new CreditCardTransaction(ethan.getName());
 		nyPayment.processPayment();
 		nyOrder.setPaymentDetails(nyPayment);
 

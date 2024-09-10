@@ -4,6 +4,7 @@ import com.pizzastoresystem.order.Order;
 import com.pizzastoresystem.order.OrderStatus;
 import com.pizzastoresystem.pizza.Pizza;
 import com.pizzastoresystem.pizzaStore.PizzaStore;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer extends Person {
@@ -15,12 +16,13 @@ public class Customer extends Person {
 	public Customer(String customerID, String name, Address address, String phone) {
 		super(name, address, phone);
 		this.customerID = customerID;
+		selectedPizzas = new ArrayList<>();
 	}
 
 	public Order placeOrder(PizzaStore store, String pizzaType) {
 		Pizza pizza = store.createPizza(pizzaType);
 		selectedPizzas.add(pizza);
-		return new Order(customerID, selectedPizzas, null, null, OrderStatus.RECEIVED);
+		return new Order(customerID, selectedPizzas, null, OrderStatus.RECEIVED);
 	}
 
 	// Getters and setters

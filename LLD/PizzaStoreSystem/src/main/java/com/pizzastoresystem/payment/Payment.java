@@ -43,7 +43,7 @@ public class Payment {
 	private PaymentStatus paymentStatus;
 	private Date creationDate;
 
-	public void processPayment() {
+	public void processPayment(String nameOnCard) {
 		// Implement payment processing logic
 	}
 }

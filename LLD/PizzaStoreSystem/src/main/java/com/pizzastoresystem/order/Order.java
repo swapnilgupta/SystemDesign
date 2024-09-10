@@ -55,8 +55,7 @@ public class Order {
 	private Payment paymentDetails;
 	private OrderStatus status;
 
-	public Order(String customerID, List<Pizza> pizzaList, Payment paymentDetails,
-		OrderStatus status) {
+	public Order(String customerID, List<Pizza> pizzaList, Payment paymentDetails, OrderStatus status) {
 		this.customerID = customerID;
 		this.pizzaList = pizzaList;
 		this.deliveryPerson = assignDeliveryPerson();
