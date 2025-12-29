@@ -24,9 +24,14 @@ Production-quality **Low-Level Design (LLD)** and **High-Level Design (HLD)** im
 
 ## High-Level Designs
 
-**AWS Architecture Patterns**: Batch Processing, Content Delivery, E-Commerce, Fault Tolerance & HA, Large Scale Computing, Time Series Processing, File Sync
+| Design | Description |
+|--------|-------------|
+| [Health Check System](HLD/HealthcheckSystem.md) | Server fleet health monitoring |
+| [Rule Propagation Service](HLD/RulePropagationService.md) | Config distribution to 60K+ servers |
+| [TikTok System](HLD/TikTokSystem.md) | Short-form video platform |
+| [Trending Posts](HLD/TrendingPosts.md) | Top K trending posts system |
 
-**System Designs** (`.drawio`): E-Commerce, Health Check System, News Feed, Rule Propagation Service
+**AWS Architecture Patterns**: Batch Processing, Content Delivery, E-Commerce, Fault Tolerance & HA, Large Scale Computing, Time Series Processing, File Sync ([See HLD/README.md](HLD/README.md))
 
 ## Quick Start
 
@@ -38,7 +43,7 @@ mvn test
 
 ## Tech Stack
 
-Java 21 • Maven • JUnit 5 • Draw.io
+Java 21 • Maven • JUnit 5 • Mermaid
 
 ## License
 
