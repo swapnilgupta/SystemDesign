@@ -27,8 +27,8 @@ public class PizzaTestDrive {
 		System.out.println("Ethan ordered a " + nyOrder.getPizzaList().getFirst().getName() + " from New York Pizza Store");
 
 		// Processing payment for the order
-		Payment nyPayment = new CreditCardTransaction(ethan.getName());
-		nyPayment.processPayment();
+		Payment nyPayment = new CreditCardTransaction();
+		nyPayment.processPayment(ethan.getName());
 		nyOrder.setPaymentDetails(nyPayment);
 
 		// Assign delivery person
@@ -46,7 +46,7 @@ public class PizzaTestDrive {
 
 		// Processing payment for the order
 		Payment chicagoPayment = new CashTransaction();
-		chicagoPayment.processPayment();
+		chicagoPayment.processPayment("Cash");
 		chicagoOrder.setPaymentDetails(chicagoPayment);
 
 		// Assign delivery person

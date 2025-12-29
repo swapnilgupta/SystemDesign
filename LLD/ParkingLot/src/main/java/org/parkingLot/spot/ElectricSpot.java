@@ -1,10 +1,10 @@
-package org.parkingLot.spot;
+package org.parkinglot.spot;
 
-import org.parkingLot.enums.ParkingSpotType;
+import org.parkinglot.enums.ParkingSpotType;
 
 public class ElectricSpot extends ParkingSpot {
 
-	public ElectricSpot() {
-		super(ParkingSpotType.ELECTRIC);
-	}
+  public ElectricSpot() {
+    super(ParkingSpotType.ELECTRIC);
+  }
 }

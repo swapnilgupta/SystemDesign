@@ -3,7 +3,12 @@ package com.pizzastoresystem.payment;
 public class CashTransaction extends Payment {
 
 	private double cashTendered;
-	CashTransaction(double cashAmount) {
+
+	public CashTransaction() {
+		this.cashTendered = 0;
+	}
+
+	public CashTransaction(double cashAmount) {
 		this.cashTendered = cashAmount;
 	}
 

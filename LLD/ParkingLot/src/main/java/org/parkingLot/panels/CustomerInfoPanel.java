@@ -1,8 +1,8 @@
-package org.parkingLot.panels;
+package org.parkinglot.panels;
 
-import org.parkingLot.constants.Person;
+import org.parkinglot.constants.Person;
 
 public class CustomerInfoPanel {
 
-	Person person;
+  Person person;
 }

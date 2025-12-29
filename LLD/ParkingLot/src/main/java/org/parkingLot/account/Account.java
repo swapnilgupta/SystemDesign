@@ -1,14 +1,14 @@
-package org.parkingLot.account;
+package org.parkinglot.account;
 
 
-import org.parkingLot.constants.Person;
+import org.parkinglot.constants.Person;
 
 public abstract class Account {
 
-	private String userName;
-	private String password;
-	private AccountStatus status;
-	private Person person;
+  private String userName;
+  private String password;
+  private AccountStatus status;
+  private Person person;
 
-	public abstract boolean resetPassword();
+  public abstract boolean resetPassword();
 }

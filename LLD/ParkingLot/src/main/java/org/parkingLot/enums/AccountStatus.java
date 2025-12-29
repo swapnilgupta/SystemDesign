@@ -1,5 +1,5 @@
-package org.parkingLot.enums;
+package org.parkinglot.enums;
 
 public enum AccountStatus {
-	ACTIVE, BLOCKED, BANNED, COMPROMISED, ARCHIVED, UNKNOWN
+  ACTIVE, BLOCKED, BANNED, COMPROMISED, ARCHIVED, UNKNOWN
 }

@@ -1,0 +1,21 @@
+# Ignore compiled Java class files
+*.class
+
+# Ignore compiled output directory
+target/
+
+# Ignore JAR files
+*.jar
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+
+# VSCode files
+.vscode/
+
+# macOS files
+.DS_Store
+
+# Draw.io files
+*.drawio

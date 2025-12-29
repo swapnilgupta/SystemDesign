@@ -4,6 +4,9 @@ public class CreditCardTransaction extends Payment {
 
 	private String nameOnCard;
 
+	public CreditCardTransaction() {
+	}
+
 	@Override
 	public void processPayment(String nameOnCard) {
 		setNameOnCard(nameOnCard);

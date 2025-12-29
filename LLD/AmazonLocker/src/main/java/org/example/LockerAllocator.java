@@ -14,8 +14,7 @@ public class LockerAllocator {
     }
 
     private int getLocker(Location userLocation) {
-        int id = -1;
-        int id = availableList.stream().sorted().findFirst().get();
+        int id = availableList.stream().sorted().findFirst().orElse(-1);
         return id;
     }
 

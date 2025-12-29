@@ -1,4 +1,4 @@
-package org.parkingLot.account;
+package org.parkinglot.account;
 
 public class AccountStatus {
 

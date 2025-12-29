@@ -5,7 +5,8 @@ public class UPITransaction extends Payment {
 	private String vpa;
 
 	@Override
-	public void processPayment() {
+	public void processPayment(String vpaId) {
+		this.vpa = vpaId;
 		// Implement UPI payment logic
 		System.out.println("Processing UPI payment for VPA: " + vpa);
 		setPaymentStatus(PaymentStatus.COMPLETED);

@@ -1,8 +1,8 @@
-package org.parkingLot.exceptions;
+package org.parkinglot.exceptions;
 
 public class InvalidSlotNumberException extends RuntimeException {
 
-	public InvalidSlotNumberException(String message) {
-		super(message);
-	}
+  public InvalidSlotNumberException(String message) {
+    super(message);
+  }
 }

@@ -1,8 +1,8 @@
-package org.parkingLot.exceptions;
+package org.parkinglot.exceptions;
 
 public class NoEmptySlotAvailable extends Exception {
 
-	public NoEmptySlotAvailable(String message) {
-		super(message);
-	}
+  public NoEmptySlotAvailable(String message) {
+    super(message);
+  }
 }

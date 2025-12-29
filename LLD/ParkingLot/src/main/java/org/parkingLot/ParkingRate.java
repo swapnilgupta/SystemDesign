@@ -1,4 +1,4 @@
-package org.parkingLot;
+package org.parkinglot;
 
 public class ParkingRate {
 

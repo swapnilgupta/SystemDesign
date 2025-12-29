@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.*;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 enum BookingStatus {
     REQUESTED, PENDING, CONFIRMED, CHECKED_IN, CANCELED, ABANDONED
 }

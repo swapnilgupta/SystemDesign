@@ -1,10 +1,10 @@
-package org.parkingLot.spot;
+package org.parkinglot.spot;
 
-import org.parkingLot.enums.ParkingSpotType;
+import org.parkinglot.enums.ParkingSpotType;
 
 public class CompactSpot extends ParkingSpot {
 
-	public CompactSpot() {
-		super(ParkingSpotType.COMPACT);
-	}
+  public CompactSpot() {
+    super(ParkingSpotType.COMPACT);
+  }
 }

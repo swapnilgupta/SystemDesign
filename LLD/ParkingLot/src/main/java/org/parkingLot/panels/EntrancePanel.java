@@ -1,4 +1,4 @@
-package org.parkingLot.panels;
+package org.parkinglot.panels;
 
 public class EntrancePanel {
 

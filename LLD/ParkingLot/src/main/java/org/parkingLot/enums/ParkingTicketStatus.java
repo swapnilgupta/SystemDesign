@@ -1,5 +1,5 @@
-package org.parkingLot.enums;
+package org.parkinglot.enums;
 
 public enum ParkingTicketStatus {
-	ACTIVE, PAID, LOST
+  ACTIVE, PAID, LOST
 }

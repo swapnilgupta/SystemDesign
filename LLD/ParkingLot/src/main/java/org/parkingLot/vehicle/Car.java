@@ -1,10 +1,10 @@
-package org.parkingLot.vehicle;
+package org.parkinglot.vehicle;
 
-import org.parkingLot.enums.VehicleType;
+import org.parkinglot.enums.VehicleType;
 
 public class Car extends Vehicle {
 
-	public Car() {
-		super(VehicleType.CAR);
-	}
+  public Car() {
+    super(VehicleType.CAR);
+  }
 }

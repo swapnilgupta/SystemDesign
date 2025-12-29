@@ -1,0 +1,63 @@
+# Low-Level Design (LLD) Interview Guidelines
+
+## 1. Clarify Requirements
+- Ask clarifying questions to nail down functional and non-functional requirements.
+- Identify use cases, constraints (performance, concurrency, scalability), and failure scenarios.
+
+## 2. Identify Core Entities and Relationships
+- List domain objects (entities, value objects, enums).
+- Define associations (composition, aggregation, inheritance).
+- Sketch a UML class diagram or ASCII/Markdown diagram.
+
+## 3. Apply SOLID Principles
+- Single Responsibility: each class has one reason to change.
+- Open/Closed: design modules open for extension, closed for modification.
+- Liskov Substitution: subtypes should be substitutable for their base types.
+- Interface Segregation: clients should not depend on unused interfaces.
+- Dependency Inversion: depend on abstractions, not concretions.
+
+## 4. Separation of Concerns & Layering
+- Split responsibilities into layers (presentation, service/business, repository/persistence).
+- Decouple UI, domain logic, and data access.
+- Use interfaces, factories, or dependency injection for wiring.
+
+## 5. Thread Safety & Concurrency
+- Identify shared mutable state and protect via synchronization or concurrent collections.
+- Minimize critical sections; prefer immutability where possible.
+- Consider lock granularity and deadlock avoidance.
+
+## 6. Spot Assignment & Resource Management
+- Model resources (e.g., parking spots) as objects with unique IDs, states, and lifecycle methods.
+- Provide allocate() and release() operations; track availability per instance, not only counts.
+
+## 7. Error Handling & Validation
+- Use custom exceptions for domain errors.
+- Validate inputs at boundaries; fail fast on invalid state.
+- Provide meaningful error messages and recovery options.
+
+## 8. Design Patterns
+- Use Strategy, Factory, Singleton, Observer, etc., where they fit recurring problems.
+- Avoid overusing patterns; prefer simple solutions first.
+
+## 9. Scalability & Performance
+- Estimate concurrency level and throughput requirements.
+- Design for horizontal scaling (stateless services, sharding, caching).
+- Avoid bottlenecks in critical paths.
+
+## 10. Persistence & Transactions
+- Abstract persistence behind repositories or DAOs.
+- Manage transactions consistently (unit of work, rollback on failure).
+- Consider eventual consistency vs. strong consistency.
+
+## 11. Testing & Extensibility
+- Write unit tests for core logic (spot assignment, rate calculation, ticket lifecycle).
+- Use mock dependencies for external systems (DB, external APIs).
+- Design for future feature additions with minimal code changes.
+
+## 12. Documentation & Communication
+- Provide class/method comments where intent isn’t obvious.
+- Keep diagrams up to date with code.
+- Explain trade-offs and assumptions in your design.
+
+---
+> These guidelines help structure and communicate your LLD solution clearly, making it both robust and maintainable.

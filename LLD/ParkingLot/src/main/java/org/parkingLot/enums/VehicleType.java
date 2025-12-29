@@ -1,5 +1,5 @@
-package org.parkingLot.enums;
+package org.parkinglot.enums;
 
 public enum VehicleType {
-	CAR, TRUCK, ELECTRIC, VAN, MOTORBIKE
+  CAR, BUS, TRUCK, ELECTRIC, VAN, MOTORBIKE
 }

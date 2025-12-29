@@ -1,37 +1,37 @@
-package org.parkingLot.vehicle;
+package org.parkinglot.vehicle;
 
-import org.parkingLot.ParkingTicket;
-import org.parkingLot.enums.VehicleType;
+import org.parkinglot.ParkingTicket;
+import org.parkinglot.enums.VehicleType;
 
 public abstract class Vehicle {
 
-	private String licenseNumber;
-	private final VehicleType type;
-	private ParkingTicket ticket;
+  private String licenseNumber;
+  private final VehicleType type;
+  private ParkingTicket ticket;
 
-	public Vehicle(VehicleType type) {
-		this.type = type;
-	}
+  public Vehicle(VehicleType type) {
+    this.type = type;
+  }
 
-	public void assignTicket(ParkingTicket ticket) {
-		this.ticket = ticket;
-	}
+  public void assignTicket(ParkingTicket ticket) {
+    this.ticket = ticket;
+  }
 
-	// getters and setters
-	public String getLicenseNumber() {
-		return licenseNumber;
-	}
+  // getters and setters
+  public String getLicenseNumber() {
+    return licenseNumber;
+  }
 
-	public void setLicenseNumber(String licenseNumber) {
-		this.licenseNumber = licenseNumber;
-	}
+  public void setLicenseNumber(String licenseNumber) {
+    this.licenseNumber = licenseNumber;
+  }
 
-	public VehicleType getType() {
-		return type;
-	}
+  public VehicleType getType() {
+    return type;
+  }
 
-	public ParkingTicket getTicket() {
-		return ticket;
-	}
+  public ParkingTicket getTicket() {
+    return ticket;
+  }
 }
 

@@ -3,8 +3,7 @@ package org.example;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+
 enum VehicleType {
     SEDAN, HATCHBACK, SUV
 }

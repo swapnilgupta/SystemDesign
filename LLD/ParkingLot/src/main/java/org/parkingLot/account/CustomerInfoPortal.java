@@ -1,16 +1,17 @@
-package org.parkingLot.account;
+package org.parkinglot.account;
 
 public class CustomerInfoPortal {
-	String id;
 
-	public void scanTicket() {
-		// TODO - implement CustomerInfoPortal.scanTicket
-		throw new UnsupportedOperationException();
-	}
+  String id;
 
-	public void processPayment() {
-		// TODO - implement CustomerInfoPortal.processPayment
-		throw new UnsupportedOperationException();
-	}
+  public void scanTicket() {
+    // TODO - implement CustomerInfoPortal.scanTicket
+    throw new UnsupportedOperationException();
+  }
+
+  public void processPayment() {
+    // TODO - implement CustomerInfoPortal.processPayment
+    throw new UnsupportedOperationException();
+  }
 
 }
